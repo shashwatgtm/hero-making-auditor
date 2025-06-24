@@ -1,0 +1,20 @@
+{
+  "name": "hero-customer-discovery",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Production hero-customer-discovery actor",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "apify": "^3.0.0",
+    "crawlee": "^3.0.0"
+  },
+  "keywords": [
+    "hero-making",
+    "business-intelligence"
+  ],
+  "author": "Hero Making Auditor",
+  "license": "MIT"
+}

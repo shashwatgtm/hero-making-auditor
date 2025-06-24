@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+.DS_Store
+*.log
+node_modules/
+apify_storage/

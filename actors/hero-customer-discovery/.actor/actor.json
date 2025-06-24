@@ -1,0 +1,11 @@
+{
+  "actorSpecification": 1,
+  "name": "hero-customer-discovery",
+  "title": "Hero Customer Discovery",
+  "description": "Production hero-customer-discovery for hero customer analysis",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "project_empty"
+  },
+  "input": "./INPUT_SCHEMA.json"
+}

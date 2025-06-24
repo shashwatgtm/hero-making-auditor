@@ -1,0 +1,38 @@
+{
+  "title": "Hero Customer Discovery Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyName": {
+      "title": "Company Name",
+      "type": "string",
+      "description": "Name of the company to analyze",
+      "editor": "textfield"
+    },
+    "companyWebsite": {
+      "title": "Company Website",
+      "type": "string",
+      "description": "Website URL",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum Results",
+      "type": "integer",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 200,
+      "editor": "number"
+    },
+    "searchDepth": {
+      "title": "Search Depth",
+      "type": "integer",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 10,
+      "editor": "number"
+    }
+  },
+  "required": [
+    "companyName"
+  ]
+}

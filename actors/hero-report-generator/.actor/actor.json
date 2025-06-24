@@ -1,0 +1,11 @@
+{
+  "actorSpecification": 1,
+  "name": "hero-report-generator",
+  "title": "Hero Report Generator",
+  "description": "Production hero-report-generator for hero customer analysis",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "project_empty"
+  },
+  "input": "./INPUT_SCHEMA.json"
+}

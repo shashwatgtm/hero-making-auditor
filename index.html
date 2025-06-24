@@ -12,27 +12,31 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #3b82f6 100%);
             min-height: 100vh;
-            padding: 2rem;
+            padding: 1rem;
+            line-height: 1.6;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.15);
             overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+            padding: 2rem 2rem;
             color: white;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
         .header::before {
@@ -42,8 +46,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .header-content {
@@ -56,77 +62,111 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .gtm-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 50%;
+            width: 120px;
+            height: 60px;
+            background: #1f2937;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 24px;
-            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        
+        .logo-text {
+            color: white;
+            font-weight: 800;
+            margin-right: 4px;
+            font-size: 24px;
+        }
+        
+        .logo-alpha {
+            color: #ff6b5e;
+            font-size: 20px;
+            font-weight: 400;
+            background: #ff6b5e;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
         }
         
         .header h1 {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(45deg, #fff, #f1f2f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
         }
         
         .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            opacity: 0.95;
             font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         /* Platform Capabilities */
         .capabilities {
-            padding: 2rem;
-            background: white;
+            padding: 2rem 2rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(240,249,255,0.9) 100%);
         }
         
         .capabilities h2 {
             text-align: center;
-            color: #2c3e50;
+            color: #0c4a6e;
             margin-bottom: 2rem;
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 600;
         }
         
         .capability-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        @media (max-width: 1200px) {
+        @media (max-width: 1024px) {
             .capability-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             .capability-grid {
                 grid-template-columns: 1fr;
             }
         }
         
         .capability-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
             border-radius: 16px;
-            border: 1px solid #e1e8ed;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            text-align: center;
         }
         
         .capability-card::before {
@@ -135,95 +175,103 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #0ea5e9);
         }
         
         .capability-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+            background: rgba(255, 255, 255, 1);
         }
         
         .capability-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(145deg, #f0f0f0, #cacaca);
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            margin-bottom: 1.5rem;
+            font-size: 28px;
+            margin: 0 auto 1.5rem;
             box-shadow: 
-                20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff,
-                inset 5px 5px 10px #bebebe,
-                inset -5px -5px 10px #ffffff;
+                0 8px 32px rgba(6, 182, 212, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
             position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(6, 182, 212, 0.1);
         }
         
         .capability-icon::before {
-            content: attr(data-icon);
+            content: '';
             position: absolute;
-            font-size: 28px;
-            color: #667eea;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, transparent, rgba(6, 182, 212, 0.05));
+            border-radius: 16px;
+        }
+        
+        .capability-icon .icon-content {
+            position: relative;
+            z-index: 2;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(145deg, #06b6d4, #0ea5e9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 
+                0 4px 8px rgba(6, 182, 212, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
         
         .capability-card h3 {
-            color: #2c3e50;
+            color: #0c4a6e;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
         }
         
         .capability-card p {
-            color: #6c757d;
-            line-height: 1.6;
-            font-size: 0.95rem;
+            color: #0369a1;
+            line-height: 1.5;
+            font-size: 0.85rem;
         }
         
         .config-section {
-            padding: 2rem;
-            background: #fafbfc;
-            border-bottom: 1px solid #e1e8ed;
+            padding: 2rem 2rem;
+            background: rgba(240, 249, 255, 0.6);
+            backdrop-filter: blur(10px);
         }
         
         .config-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .target-personas-section {
             grid-column: 1 / -1;
-            width: 100%;
         }
         
         .target-personas-section .persona-grid {
             display: flex;
-            flex-wrap: nowrap;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-            align-items: center;
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-        
-        .target-personas-section .persona-chip {
-            padding: 0.6rem 1rem;
-            background: white;
-            border: 2px solid #e1e8ed;
-            border-radius: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-            font-weight: 500;
-            flex: 0 0 auto;
-            white-space: nowrap;
-            min-width: max-content;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .form-group {
@@ -233,491 +281,463 @@
         
         .form-group label {
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            color: #0c4a6e;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
         }
         
         .form-control {
-            padding: 1rem;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
+            padding: 1.25rem;
+            border: 2px solid #bae6fd;
+            border-radius: 16px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
         }
         
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
             outline: none;
+            background: white;
         }
         
         .persona-chip {
-            padding: 0.75rem 1rem;
-            background: white;
-            border: 2px solid #e1e8ed;
-            border-radius: 25px;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #bae6fd;
+            border-radius: 50px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 500;
+            backdrop-filter: blur(10px);
         }
         
         .persona-chip.selected {
-            background: #667eea;
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
             color: white;
-            border-color: #667eea;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(6, 182, 212, 0.3);
         }
         
         .persona-chip:hover {
-            border-color: #667eea;
+            border-color: #06b6d4;
             transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
         }
         
         .custom-role {
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         
         .analysis-options {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .option-group {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 2px solid #e1e8ed;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(6, 182, 212, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .option-group h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            color: #0c4a6e;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
         
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 1rem;
         }
         
         .radio-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 8px;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .radio-item:hover {
-            background: #f8f9fa;
+            background: rgba(6, 182, 212, 0.05);
         }
         
         .radio-item input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            accent-color: #667eea;
+            width: 24px;
+            height: 24px;
+            accent-color: #06b6d4;
         }
         
         .analyze-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
             color: white;
             border: none;
-            padding: 1.25rem 3rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            padding: 1.5rem 4rem;
+            border-radius: 60px;
+            font-size: 1.25rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: block;
-            margin: 2rem auto 0;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            margin: 3rem auto 0;
+            box-shadow: 0 16px 32px rgba(6, 182, 212, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
         .analyze-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+            z-index: 1000;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .loading-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .loading-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .loading-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+
+        .clock-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 3rem;
+            border: 6px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .clock-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 60px;
+            margin-left: -2px;
+            margin-top: -60px;
+            animation: rotate 2s linear infinite;
+        }
+
+        .hour-hand {
+            width: 6px;
+            height: 40px;
+            margin-left: -3px;
+            margin-top: -40px;
+            animation: rotate 8s linear infinite;
+        }
+
+        .center-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .progress-steps {
+            margin-top: 4rem;
+        }
+
+        .progress-step {
+            margin: 1.5rem 0;
+            padding: 1.5rem 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            animation: fadeInStep 0.5s ease-in-out forwards;
+            font-size: 1.1rem;
+        }
+
+        .progress-step:nth-child(1) { animation-delay: 0.5s; }
+        .progress-step:nth-child(2) { animation-delay: 1.5s; }
+        .progress-step:nth-child(3) { animation-delay: 2.5s; }
+        .progress-step:nth-child(4) { animation-delay: 3.5s; }
+
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .results-section {
+            display: none;
+            padding: 2rem 2rem;
+            background: rgba(240, 249, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-notice {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
             padding: 2rem;
-            background: #f8f9fa;
-            border-top: 1px solid #e1e8ed;
+            margin-bottom: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-notice h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .demo-notice p {
+            color: #92400e;
+            margin: 0;
+            font-size: 1.1rem;
         }
         
         .results-header {
             text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .metric-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 1px solid #e1e8ed;
-            transition: all 0.3s ease;
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-        }
-        
-        .metric-input {
-            background: #e3f2fd !important;
-            color: #1976d2 !important;
-            border-color: #2196f3 !important;
-        }
-        
-        .metric-value {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .metric-label {
-            color: #6c757d;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .metric-change {
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .metric-change.positive {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .tabs-container {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        }
-        
-        .tabs-nav {
-            display: flex;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e1e8ed;
-        }
-        
-        .tab-btn {
-            flex: 1;
-            padding: 1.25rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            color: #6c757d;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab-btn.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-            background: white;
-        }
-        
-        .tab-btn:hover {
-            color: #667eea;
-            background: white;
-        }
-        
-        .tab-content {
-            padding: 2rem;
-            min-height: 400px;
-        }
-        
-        .customer-list, .competitor-list {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .list-item {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #e1e8ed;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .list-item:hover {
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        
-        .item-info h4 {
-            color: #2c3e50;
-            margin-bottom: 0.25rem;
-        }
-        
-        .item-info p {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .status-badge {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .status-verified {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-competitor {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .executive-profile {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #e1e8ed;
-            margin-bottom: 1rem;
-        }
-        
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .profile-info h4 {
-            color: #2c3e50;
-            margin-bottom: 0.25rem;
-        }
-        
-        .profile-info p {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .hero-score {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .score-high {
-            background: #28a745;
-            color: white;
-        }
-        
-        .score-medium {
-            background: #ffc107;
-            color: #212529;
-        }
-        
-        .score-low {
-            background: #6c757d;
-            color: white;
-        }
-        
-        .hero-signal {
-            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-        
-        .hero-signal p {
-            color: #155724;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-        
-        .hero-signal small {
-            color: #6c757d;
-        }
-        
-        .competitive-position {
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
             margin-bottom: 2rem;
         }
-        
-        .position-rank {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+
+        .results-cta {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            margin-bottom: 3rem;
         }
-        
-        .position-label {
-            font-size: 1.2rem;
+
+        .results-cta h3 {
+            color: #0c4a6e;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .results-cta p {
+            color: #0369a1;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .cta-highlight {
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .cta-highlight h4 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .cta-highlight p {
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
-        
-        .scoring-breakdown {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        .weight-list, .score-list {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #e1e8ed;
-        }
-        
-        .weight-list h4, .score-list h4 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-        
-        .weight-item, .score-item {
-            display: flex;
-            justify-content: space-between;
+
+        .cta-button {
+            background: white;
+            color: #0ea5e9;
+            border: none;
+            padding: 1.25rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            display: inline-flex;
             align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e1e8ed;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .secondary-button {
+            background: #06b6d4;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: #0284c7;
+            transform: translateY(-1px);
         }
         
-        .weight-item:last-child, .score-item:last-child {
-            border-bottom: none;
+        /* Footer Sections */
+        .cta-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 2rem 2rem;
+            text-align: center;
         }
-        
-        .recommendations {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #e1e8ed;
+
+        .cta-section h2 {
+            color: #0c4a6e;
+            margin-bottom: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
         }
-        
-        .jtbd-grid {
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-section h2,
+        .about-section h3 {
+            color: #0c4a6e;
+            margin-bottom: 2rem;
+        }
+
+        .about-section p {
+            color: #0369a1;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-        
-        .jtbd-card {
-            background: white;
+
+        .service-card {
+            border: 2px solid #bae6fd;
             padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid #e1e8ed;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            position: relative;
-        }
-        
-        .jtbd-card.cto {
-            border-left: 4px solid #667eea;
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-        }
-        
-        .jtbd-card.cro {
-            border-left: 4px solid #28a745;
-            background: linear-gradient(135deg, #f8fff8 0%, #ffffff 100%);
-        }
-        
-        .jtbd-card.cmo {
-            border-left: 4px solid #ffc107;
-            background: linear-gradient(135deg, #fffdf8 0%, #ffffff 100%);
-        }
-        
-        .jtbd-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e1e8ed;
-        }
-        
-        .persona-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #06b6d4;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(6, 182, 212, 0.1);
+        }
+
+        .service-card h4 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #0369a1;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
-        .persona-badge.cto {
-            background: #667eea;
-        }
-        
-        .persona-badge.cro {
-            background: #28a745;
-        }
-        
-        .persona-badge.cmo {
-            background: #ffc107;
-            color: #212529;
-        }
-        
-        .jtbd-section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .jtbd-section h5 {
-            color: #2c3e50;
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .jtbd-section p {
-            color: #6c757d;
-            line-height: 1.5;
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-        
-        @media (max-width: 1024px) {
-            .jtbd-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                border-radius: 12px;
+            body {
+                padding: 0.5rem;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .container {
+                border-radius: 16px;
+            }
+            
+            .header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .gtm-logo {
+                width: 100px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .logo-alpha {
+                font-size: 16px;
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+            }
+            
+            .capabilities,
+            .config-section,
+            .results-section,
+            .cta-section,
+            .about-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .capability-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .config-grid {
@@ -727,13 +747,45 @@
             .analysis-options {
                 grid-template-columns: 1fr;
             }
-            
-            .tabs-nav {
-                flex-wrap: wrap;
+
+            .persona-grid {
+                justify-content: center;
             }
-            
-            .tab-btn {
-                flex: 1 1 50%;
+
+            .progress-step {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .clock-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .minute-hand {
+                height: 40px;
+                margin-top: -40px;
+            }
+
+            .hour-hand {
+                height: 28px;
+                margin-top: -28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .analyze-btn {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -744,7 +796,10 @@
         <div class="header">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="gtm-logo">GTM α</div>
+                    <div class="gtm-logo">
+                        <span class="logo-text">GTM</span>
+                        <span class="logo-alpha">α</span>
+                    </div>
                 </div>
                 <h1>Hero-Making Brand Audit</h1>
                 <p>'H.E.A.R.T + JTBD' Framework: Emotional Intelligence meets Jobs-to-be-Done!</p>
@@ -756,25 +811,33 @@
             <h2>Platform Capabilities</h2>
             <div class="capability-grid">
                 <div class="capability-card">
-                    <div class="capability-icon" data-icon="🔍"></div>
+                    <div class="capability-icon">
+                        <div class="icon-content">🔍</div>
+                    </div>
                     <h3>Real Customer Discovery</h3>
                     <p>Automatically discover verified customers through web scraping, case studies, testimonials, and G2/Capterra reviews</p>
                 </div>
                 
                 <div class="capability-card">
-                    <div class="capability-icon" data-icon="⚖️"></div>
+                    <div class="capability-icon">
+                        <div class="icon-content">⚖️</div>
+                    </div>
                     <h3>Competitive Benchmarking</h3>
                     <p>Auto-discover top 3 competitors from G2/Capterra/TrustRadius with market positioning analysis</p>
                 </div>
                 
                 <div class="capability-card">
-                    <div class="capability-icon" data-icon="👥"></div>
+                    <div class="capability-icon">
+                        <div class="icon-content">👥</div>
+                    </div>
                     <h3>Executive Hero Analysis</h3>
                     <p>Real LinkedIn profiles of customer CTOs, CROs, CMOs with career advancement signal detection</p>
                 </div>
                 
                 <div class="capability-card">
-                    <div class="capability-icon" data-icon="📊"></div>
+                    <div class="capability-icon">
+                        <div class="icon-content">📊</div>
+                    </div>
                     <h3>Multi-Channel Scoring</h3>
                     <p>40% G2/Capterra + 30% Social Media + 30% Industry Publications for comprehensive analysis</p>
                 </div>
@@ -782,516 +845,184 @@
         </div>
         
         <!-- Configuration Section -->
-        <div class="config-section">
-            <div class="config-grid">
-                <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" class="form-control" placeholder="e.g., Whatfix, Salesforce, HubSpot" value="Whatfix">
-                </div>
-                
-                <div class="form-group">
-                    <label>Company Website (Optional)</label>
-                    <input type="text" class="form-control" placeholder="e.g., https://whatfix.com" value="https://whatfix.com">
-                </div>
-                
-                <div class="form-group">
-                    <label>Target Region</label>
-                    <select class="form-control">
-                        <option>North America</option>
-                        <option>Europe</option>
-                        <option>Asia-Pacific</option>
-                        <option>Global</option>
-                    </select>
-                </div>
-                
-                <div class="form-group target-personas-section">
-                    <label>Target Personas</label>
-                    <div class="persona-grid">
-                        <div class="persona-chip selected">CTO</div>
-                        <div class="persona-chip selected">CRO</div>
-                        <div class="persona-chip selected">CMO</div>
-                        <div class="persona-chip">CEO</div>
-                        <div class="persona-chip">CISO</div>
-                        <div class="persona-chip">VP Engineering</div>
-                        <div class="persona-chip">VP Sales</div>
-                        <div class="persona-chip">VP Marketing</div>
+        <div class="config-section" id="configSection">
+            <form id="brandAnalysisForm">
+                <div class="config-grid">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control" id="companyName" placeholder="e.g., Salesforce, HubSpot, Zoho" value="" required>
                     </div>
-                    <div class="custom-role">
-                        <input type="text" class="form-control" placeholder="Custom Role: e.g., Customer Success Head">
+                    
+                    <div class="form-group">
+                        <label>Company Website (Optional)</label>
+                        <input type="text" class="form-control" id="companyWebsite" placeholder="e.g., https://salesforce.com" value="">
                     </div>
-                </div>
-            </div>
-            
-            <div class="analysis-options">
-                <div class="option-group">
-                    <h3>Customer Discovery</h3>
-                    <div class="radio-group">
-                        <label class="radio-item">
-                            <input type="radio" name="customer_method" checked>
-                            <span>Auto-Discover Customers</span>
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="customer_method">
-                            <span>Upload Customer List (.csv/.xlsx)</span>
-                        </label>
+                    
+                    <div class="form-group">
+                        <label>Target Region</label>
+                        <select class="form-control" id="targetRegion" required>
+                            <option value="">Select Region</option>
+                            <option value="North America">North America</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Asia-Pacific">Asia-Pacific</option>
+                            <option value="Global">Global</option>
+                        </select>
                     </div>
-                    <div id="customer-upload" style="display: none; margin-top: 1rem;">
-                        <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
-                        <small style="color: #6c757d; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
-                    </div>
-                </div>
-                
-                <div class="option-group">
-                    <h3>Competitive Benchmarking</h3>
-                    <div class="radio-group">
-                        <label class="radio-item">
-                            <input type="radio" name="competitor_method" checked>
-                            <span>Auto-Discover from Review Sites</span>
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="competitor_method">
-                            <span>Upload Competitor List (.csv/.xlsx)</span>
-                        </label>
-                    </div>
-                    <div id="review-sites" style="margin-top: 1rem;">
-                        <label style="font-size: 0.9rem; color: #6c757d; margin-bottom: 0.5rem; display: block;">Select Review Sites:</label>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="checkbox" checked> G2.com
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="checkbox" checked> Capterra
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem;">
-                                <input type="checkbox"> TrustRadius
-                            </label>
+                    
+                    <div class="form-group target-personas-section">
+                        <label>Target Personas</label>
+                        <div class="persona-grid">
+                            <div class="persona-chip">CTO</div>
+                            <div class="persona-chip">CRO</div>
+                            <div class="persona-chip">CMO</div>
+                            <div class="persona-chip">CEO</div>
+                            <div class="persona-chip">CISO</div>
+                            <div class="persona-chip">VP Engineering</div>
+                            <div class="persona-chip">VP Sales</div>
+                            <div class="persona-chip">VP Marketing</div>
+                        </div>
+                        <div class="custom-role">
+                            <input type="text" class="form-control" id="customRole" placeholder="Custom Role: e.g., Customer Success Head">
                         </div>
                     </div>
-                    <div id="competitor-upload" style="display: none; margin-top: 1rem;">
-                        <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
-                        <small style="color: #6c757d; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
+                </div>
+                
+                <div class="analysis-options">
+                    <div class="option-group">
+                        <h3>Customer Discovery</h3>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="customer_method" value="auto" checked>
+                                <span>Auto-Discover Customers</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="customer_method" value="upload">
+                                <span>Upload Customer List (.csv/.xlsx)</span>
+                            </label>
+                        </div>
+                        <div id="customer-upload" style="display: none; margin-top: 1rem;">
+                            <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
+                            <small style="color: #0369a1; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h3>Competitive Benchmarking</h3>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="competitor_method" value="auto" checked>
+                                <span>Auto-Discover from Review Sites</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="competitor_method" value="upload">
+                                <span>Upload Competitor List (.csv/.xlsx)</span>
+                            </label>
+                        </div>
+                        <div id="review-sites" style="margin-top: 1rem;">
+                            <label style="font-size: 0.9rem; color: #0369a1; margin-bottom: 0.5rem; display: block;">Select Review Sites:</label>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" checked> G2.com
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" checked> Capterra
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox"> TrustRadius
+                                </label>
+                            </div>
+                        </div>
+                        <div id="competitor-upload" style="display: none; margin-top: 1rem;">
+                            <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
+                            <small style="color: #0369a1; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
+                        </div>
                     </div>
                 </div>
+                
+                <button type="submit" class="analyze-btn">Analyze Hero-Making Impact</button>
+            </form>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-content">
+                <h2 class="loading-title">Analyzing Brand Impact</h2>
+                <p class="loading-subtitle">Your Comprehensive Brand Audit is on the Way</p>
+                
+                <div class="clock-container">
+                    <div class="clock-hand minute-hand"></div>
+                    <div class="clock-hand hour-hand"></div>
+                    <div class="center-dot"></div>
+                </div>
+                
+                <div class="progress-steps">
+                    <div class="progress-step">🔍 Analyzing brand messaging and positioning</div>
+                    <div class="progress-step">🎯 Evaluating hero-making potential</div>
+                    <div class="progress-step">📊 Calculating trust and authority factors</div>
+                    <div class="progress-step">✨ Generating customer hero personas</div>
+                </div>
             </div>
-            
-            <button class="analyze-btn">Analyze Hero-Making Impact</button>
         </div>
         
         <!-- Results Section -->
-        <div class="results-section">
+        <div class="results-section" id="resultsSection">
+            <div class="demo-notice">
+                <h3>🚧 Platform Demo Mode</h3>
+                <p>This is a preview of our analysis capabilities. For real-time data analysis and actual competitive intelligence, please schedule a consultation with our team.</p>
+            </div>
+
             <div class="results-header">
-                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 24px; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);">W</div>
-                    <h2 style="color: #2c3e50; font-size: 2.5rem; margin: 0;">Hero-Making Analysis Results</h2>
-                </div>
-                <p style="color: #6c757d; font-size: 1.1rem;">Comprehensive brand intelligence report for Whatfix</p>
-            </div>
-            
-            <!-- Summary Metrics -->
-            <div class="metrics-grid">
-                <div class="metric-card metric-input">
-                    <div class="metric-value">23</div>
-                    <div class="metric-label">Target Personas Analyzed</div>
-                    <div class="metric-change positive">Input: CTO, CRO, CMO profiles</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-value">84</div>
-                    <div class="metric-label">Hero-Making Score</div>
-                    <div class="metric-change positive">Calculated as: (G2 Score × 40%) + (Social Score × 30%) + (Publications × 30%)</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-value">67%</div>
-                    <div class="metric-label">Career Impact Stories</div>
-                    <div class="metric-change positive">Calculated as: Promotion mentions ÷ Total executive posts</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-value">89th</div>
-                    <div class="metric-label">Industry Percentile</div>
-                    <div class="metric-change positive">Calculated as: Hero-Making Score rank vs G2 category leaders</div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <div id="companyLogo" style="width: 100px; height: 100px; background: linear-gradient(135deg, #06b6d4, #0ea5e9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 32px; box-shadow: 0 16px 32px rgba(6, 182, 212, 0.3);">C</div>
+                    <div style="text-align: center;">
+                        <h2 id="companyNameDisplay" style="color: #0c4a6e; font-size: clamp(2rem, 4vw, 3rem); margin: 0;">Hero-Making Analysis Results</h2>
+                        <p id="companyDescription" style="color: #0369a1; font-size: 1.2rem; margin-top: 0.5rem;">Platform capability demonstration for your company</p>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Detailed Analysis Tabs -->
-            <div class="tabs-container">
-                <div class="tabs-nav">
-                    <button class="tab-btn active" onclick="showTab('customers')">Customer Discovery</button>
-                    <button class="tab-btn" onclick="showTab('competitors')">Competitive Analysis</button>
-                    <button class="tab-btn" onclick="showTab('executives')">Executive Analysis</button>
-                    <button class="tab-btn" onclick="showTab('scoring')">Scoring Breakdown</button>
-                    <button class="tab-btn" onclick="showTab('recommendations')">Recommendations</button>
-                </div>
+
+            <div class="results-cta">
+                <h3>Ready to See Real Results?</h3>
+                <p>This platform will provide actual competitive intelligence, real customer discovery, and genuine executive hero analysis when fully activated.</p>
                 
-                <!-- Customer Discovery Tab -->
-                <div id="customers" class="tab-content">
-                    <h3>Discovered Customers</h3>
-                    <p style="margin-bottom: 2rem; color: #6c757d;">Found <strong>6</strong> verified customer companies:</p>
-                    
-                    <div class="customer-list">
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Sentry</h4>
-                                <p>Software • Error Monitoring</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Cardinal Health</h4>
-                                <p>Healthcare • Medical Distribution</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Experian</h4>
-                                <p>Financial Services • Credit Reporting</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>AutoZone</h4>
-                                <p>Automotive Retail • Auto Parts</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Mercedes-Benz</h4>
-                                <p>Automotive • Luxury Vehicles</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Marketboomer</h4>
-                                <p>Procurement Software • B2B Platform</p>
-                            </div>
-                            <div class="status-badge status-verified">✓ Verified</div>
-                        </div>
-                    </div>
+                <div class="cta-highlight">
+                    <h4>Schedule Your Real Brand Analysis</h4>
+                    <p>Get actual data, real competitive insights, and authentic customer discovery for your brand.</p>
+                    <button class="cta-button" onclick="window.open('https://calendly.com/shashwat-gtmhelix/45min', '_blank')">
+                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: linear-gradient(135deg, #06b6d4, #0ea5e9); border-radius: 6px; color: white; font-size: 12px; margin-right: 0.5rem;">📅</span>
+                        Book 45-Minute Strategy Session
+                    </button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                        <strong>Real analysis • Actual data • Genuine insights</strong>
+                    </p>
                 </div>
-                
-                <!-- Competitive Analysis Tab -->
-                <div id="competitors" class="tab-content" style="display: none;">
-                    <div class="competitive-position">
-                        <div class="position-rank">#2</div>
-                        <div class="position-label">Market Position of 4 Companies</div>
-                        <p style="margin-top: 1rem; opacity: 0.9;">+5.2 points above average competitor</p>
-                    </div>
-                    
-                    <h3>Competitor Analysis</h3>
-                    <p style="margin-bottom: 2rem; color: #6c757d;">Auto-discovered from G2, Capterra, and TrustRadius:</p>
-                    
-                    <div class="competitor-list">
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>WalkMe</h4>
-                                <p>G2 • 4.5⭐ (234 reviews) • Digital Adoption</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>Hero Score: 87.2</strong>
-                            </div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Pendo</h4>
-                                <p>G2 • 4.3⭐ (456 reviews) • Product Analytics</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>Hero Score: 78.9</strong>
-                            </div>
-                        </div>
-                        
-                        <div class="list-item">
-                            <div class="item-info">
-                                <h4>Appcues</h4>
-                                <p>Capterra • 4.4⭐ (189 reviews) • User Onboarding</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>Hero Score: 75.6</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Executive Analysis Tab -->
-                <div id="executives" class="tab-content" style="display: none;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <!-- CTO Analysis -->
-                        <div>
-                            <h4 style="color: #667eea; margin-bottom: 1rem; text-align: center;">CTO Analysis (8 profiles)</h4>
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>Sarah Chen</h4>
-                                        <p>CTO @ Sentry</p>
-                                    </div>
-                                    <div class="hero-score score-high">92</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Digital transformation with Whatfix led to 95% adoption. Board recognized our innovation leadership."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>David Kim</h4>
-                                        <p>CTO @ Marketboomer</p>
-                                    </div>
-                                    <div class="hero-score score-low">64</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Early stages with Whatfix implementation. Showing initial promise."</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- CRO Analysis -->
-                        <div>
-                            <h4 style="color: #28a745; margin-bottom: 1rem; text-align: center;">CRO Analysis (6 profiles)</h4>
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>Michael Torres</h4>
-                                        <p>CRO @ Cardinal Health</p>
-                                    </div>
-                                    <div class="hero-score score-high">89</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Whatfix reduced our sales training time by 50%. Achieved record quarterly results."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>Lisa Zhang</h4>
-                                        <p>CRO @ AutoZone</p>
-                                    </div>
-                                    <div class="hero-score score-medium">71</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Streamlined our sales processes. Team productivity increased significantly."</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- CMO Analysis -->
-                        <div>
-                            <h4 style="color: #ffc107; margin-bottom: 1rem; text-align: center;">CMO Analysis (9 profiles)</h4>
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>Jennifer Walsh</h4>
-                                        <p>CMO @ Experian</p>
-                                    </div>
-                                    <div class="hero-score score-high">86</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Whatfix enabled our marketing team transformation. Campaign efficiency up 40%."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="executive-profile">
-                                <div class="profile-header">
-                                    <div class="profile-info">
-                                        <h4>Robert Silva</h4>
-                                        <p>CMO @ Mercedes-Benz</p>
-                                    </div>
-                                    <div class="hero-score score-medium">78</div>
-                                </div>
-                                <div class="hero-signal">
-                                    <p>"Digital adoption strategy with Whatfix drove customer engagement growth."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                        <p style="color: #6c757d; margin: 0;">Total executive profiles analyzed: <strong>23 across all personas</strong> (8 CTO + 6 CRO + 9 CMO)</p>
-                    </div>
-                </div>
-                
-                <!-- Scoring Breakdown Tab -->
-                <div id="scoring" class="tab-content" style="display: none;">
-                    <h3>Multi-Channel Scoring Breakdown</h3>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
-                        <div>
-                            <h4 style="margin-bottom: 1.5rem; color: #2c3e50;">Scoring Methodology</h4>
-                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <thead>
-                                    <tr style="background: #f8f9fa;">
-                                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid #dee2e6;">Data Source</th>
-                                        <th style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6;">Weight</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">G2/Capterra/TrustRadius</td>
-                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600;">40%</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Social Media (LinkedIn/Twitter)</td>
-                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600;">30%</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 1rem;">Industry Publications</td>
-                                        <td style="padding: 1rem; text-align: right; font-weight: 600;">30%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div>
-                            <h4 style="margin-bottom: 1.5rem; color: #2c3e50;">Current Performance</h4>
-                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <thead>
-                                    <tr style="background: #f8f9fa;">
-                                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid #dee2e6;">Channel</th>
-                                        <th style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6;">Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Review Platforms</td>
-                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600; color: #28a745;">85.1/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Social Media</td>
-                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600; color: #28a745;">82.4/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 1rem;">Industry Publications</td>
-                                        <td style="padding: 1rem; text-align: right; font-weight: 600; color: #ffc107;">78.9/100</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2196f3;">
-                        <p style="color: #1976d2; margin: 0;"><strong>Implementation Status:</strong> All channels active ✅ | Real-time competitive benchmarking ✅ | Custom persona analysis ✅</p>
-                    </div>
-                </div>
-                
-                <!-- Recommendations Tab -->
-                <div id="recommendations" class="tab-content" style="display: none;">
-                    <h3>Strategic Recommendations</h3>
-                    
-                    <div style="background: #d4edda; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #28a745;">
-                        <p style="color: #155724; margin: 0; font-weight: 600;">Strong Hero-Making Potential - Your brand effectively helps executives advance their careers</p>
-                    </div>
-                    
-                    <h4 style="margin-bottom: 1.5rem;">Jobs-to-be-Done (JTBD) Framework Analysis by Persona:</h4>
-                    
-                    <div class="jtbd-grid">
-                        <!-- CTO JTBD -->
-                        <div class="jtbd-card cto">
-                            <div class="jtbd-header">
-                                <div class="persona-badge cto">CTO</div>
-                                <h4 style="color: #2c3e50; margin: 0;">Chief Technology Officer</h4>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Functional Job</h5>
-                                <p>"When I need to modernize our tech stack and prove digital transformation ROI, I hire Whatfix to deliver measurable adoption metrics that showcase my technical leadership."</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Emotional Job</h5>
-                                <p>Feel recognized as an innovative technology leader who drives organizational transformation and operational efficiency.</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Success Criteria</h5>
-                                <p>95% user adoption rates, reduced training costs, board recognition for digital transformation success.</p>
-                            </div>
-                        </div>
-                        
-                        <!-- CRO JTBD -->
-                        <div class="jtbd-card cro">
-                            <div class="jtbd-header">
-                                <div class="persona-badge cro">CRO</div>
-                                <h4 style="color: #2c3e50; margin: 0;">Chief Revenue Officer</h4>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Functional Job</h5>
-                                <p>"When I need to accelerate sales team productivity and hit revenue targets, I hire Whatfix to streamline sales processes and reduce ramp time."</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Emotional Job</h5>
-                                <p>Feel confident as a revenue growth architect who consistently delivers on ambitious targets and builds high-performing teams.</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Success Criteria</h5>
-                                <p>50% reduction in sales training time, record quarterly results, promotion recognition for revenue leadership.</p>
-                            </div>
-                        </div>
-                        
-                        <!-- CMO JTBD -->
-                        <div class="jtbd-card cmo">
-                            <div class="jtbd-header">
-                                <div class="persona-badge cmo">CMO</div>
-                                <h4 style="color: #2c3e50; margin: 0;">Chief Marketing Officer</h4>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Functional Job</h5>
-                                <p>"When I need to optimize marketing operations and prove campaign effectiveness, I hire Whatfix to enhance team productivity and demonstrate clear marketing ROI."</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Emotional Job</h5>
-                                <p>Feel established as a strategic marketing leader who drives measurable business impact and operational excellence.</p>
-                            </div>
-                            
-                            <div class="jtbd-section">
-                                <h5>Success Criteria</h5>
-                                <p>40% improvement in campaign efficiency, enhanced team capabilities, industry recognition for marketing innovation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #2196f3;">
-                        <h5 style="color: #1976d2; margin-bottom: 1rem;">Common Job Triggers Across All Personas:</h5>
-                        <p style="color: #1976d2; margin: 0;">New role onboarding, quarterly business reviews, budget planning cycles, digital transformation initiatives, competitive pressure situations, and performance review periods.</p>
-                    </div>
-                </div>
+
+                <button class="secondary-button" onclick="resetForm()">
+                    ← Try Another Company
+                </button>
             </div>
         </div>
         
         <!-- CTA Section -->
-        <div style="background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 3rem 2rem; text-align: center; border-top: 1px solid #e1e8ed;">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
-                    <span style="font-size: 2rem;">🚀</span>
-                    <h2 style="color: #2c3e50; margin: 0;">Ready for Advanced GTM Transformation?</h2>
+        <div class="cta-section">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(6, 182, 212, 0.1);">
+                        <div style="width: 32px; height: 32px; background: linear-gradient(145deg, #06b6d4, #0ea5e9); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">🚀</div>
+                    </div>
+                    <h2 style="margin: 0;">Ready for Advanced GTM Transformation?</h2>
                 </div>
                 
-                <div style="background: #28a745; padding: 2rem; border-radius: 16px; margin-bottom: 2rem;">
-                    <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Schedule Your Personal GTM Alpha Strategy Session</h3>
-                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; line-height: 1.6;">
-                        This enhanced report provides comprehensive insights based on real expertise and documented methodologies. For customized implementation support, detailed strategy development, and hands-on GTM optimization:
+                <div class="cta-highlight">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Schedule Your Personal GTM Alpha Strategy Session</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.6;">
+                        This platform showcases our capabilities with real methodologies and documented frameworks. For customized implementation support, detailed strategy development, and hands-on GTM optimization:
                     </p>
-                    <button onclick="window.open('https://calendly.com/shashwat-gtmhelix/45min', '_blank')" style="background: white; color: #28a745; border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
-                        📅 Book 45-Minute Strategy Session
+                    <button class="cta-button" onclick="window.open('https://calendly.com/shashwat-gtmhelix/45min', '_blank')">
+                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: linear-gradient(135deg, #06b6d4, #0ea5e9); border-radius: 6px; color: white; font-size: 12px; margin-right: 0.5rem;">📅</span>
+                        Book 45-Minute Strategy Session
                     </button>
-                    <p style="color: rgba(255,255,255,0.8); margin-top: 1rem; font-size: 0.9rem;">
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                         <strong>Personal consultation • Custom implementation roadmap • Direct expert support</strong>
                     </p>
                 </div>
@@ -1299,29 +1030,29 @@
         </div>
         
         <!-- About Section -->
-        <div style="background: white; padding: 3rem 2rem; border-top: 1px solid #e1e8ed;">
+        <div class="about-section">
             <div style="max-width: 1000px; margin: 0 auto;">
-                <h2 style="color: #2c3e50; margin-bottom: 2rem;">About Shashwat Ghosh</h2>
-                <p style="color: #6c757d; line-height: 1.7; margin-bottom: 2rem; font-size: 1.1rem;">
+                <h2>About Shashwat Ghosh</h2>
+                <p>
                     Shashwat Ghosh developed the EPIC framework for Go-to-Market (GTM) strategies, offering CXOs a strategic roadmap to optimize their start-ups' market approaches. His innovative approach transcends traditional methods, addressing new forces shaping GTM for Alpha growth. Recognized for his contributions to product marketing, Shashwat is ranked among the <strong>Top 10 Product Marketing Creators in India and 52nd worldwide on LinkedIn.</strong>
                 </p>
                 
-                <h3 style="color: #2c3e50; margin-bottom: 1.5rem;">Services offered:</h3>
+                <h3>Services offered:</h3>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
-                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">Helix Consulting</h4>
-                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">AI tools & EPIC framework to optimize Go-to-Market Alpha Plays for CXOs.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>Helix Consulting</h4>
+                        <p>AI tools & EPIC framework to optimize Go-to-Market Alpha Plays for CXOs.</p>
                     </div>
                     
-                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
-                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">Hyper-Plays.com</h4>
-                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">Enrich CRM, Outbound support, ICP tester and buyer group persona for Sales and SDR teams</p>
+                    <div class="service-card">
+                        <h4>Hyper-Plays.com</h4>
+                        <p>Enrich CRM, Outbound support, ICP tester and buyer group persona for Sales and SDR teams</p>
                     </div>
                     
-                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
-                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">GTM Fractional Expert</h4>
-                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">Executive-level strategic guidance for efficient scaling without overhead.</p>
+                    <div class="service-card">
+                        <h4>GTM Fractional Expert</h4>
+                        <p>Executive-level strategic guidance for efficient scaling without overhead.</p>
                     </div>
                 </div>
             </div>
@@ -1329,20 +1060,90 @@
     </div>
     
     <script>
-        function showTab(tabName) {
-            // Hide all tab contents
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(tab => tab.style.display = 'none');
+        let currentCompany = '';
+
+        // Form submission handler
+        document.getElementById('brandAnalysisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Remove active class from all tab buttons
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Get form values
+            const companyName = document.getElementById('companyName').value || 'Company';
+            const companyWebsite = document.getElementById('companyWebsite').value;
+            const targetRegion = document.getElementById('targetRegion').value;
             
-            // Show selected tab and mark button as active
-            document.getElementById(tabName).style.display = 'block';
-            event.target.classList.add('active');
+            // Validation
+            if (!companyName.trim()) {
+                alert('Please enter a company name');
+                return;
+            }
+            
+            if (!targetRegion) {
+                alert('Please select a target region');
+                return;
+            }
+            
+            // Update current company
+            currentCompany = companyName;
+            
+            // Show loading screen
+            showLoadingScreen();
+            
+            // Simulate analysis delay (5 seconds)
+            setTimeout(() => {
+                hideLoadingScreen();
+                updateResultsWithCompany(companyName);
+                showResults();
+            }, 5000);
+        });
+
+        function showLoadingScreen() {
+            document.getElementById('loadingScreen').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
-        
+
+        function hideLoadingScreen() {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateResultsWithCompany(companyName) {
+            // Update company display elements
+            document.getElementById('companyNameDisplay').textContent = 'Hero-Making Analysis Results';
+            document.getElementById('companyLogo').textContent = companyName.charAt(0).toUpperCase();
+            document.getElementById('companyDescription').textContent = `Platform capability demonstration for ${companyName}`;
+        }
+
+        function showResults() {
+            // Hide config section
+            document.getElementById('configSection').style.display = 'none';
+            
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            // Reset form
+            document.getElementById('brandAnalysisForm').reset();
+            currentCompany = '';
+            
+            // Reset all persona chips
+            document.querySelectorAll('.persona-chip').forEach(chip => {
+                chip.classList.remove('selected');
+            });
+            
+            // Show config section
+            document.getElementById('configSection').style.display = 'block';
+            
+            // Hide results section
+            document.getElementById('resultsSection').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Persona chip selection
         document.querySelectorAll('.persona-chip').forEach(chip => {
             chip.addEventListener('click', function() {
@@ -1354,7 +1155,7 @@
         document.querySelectorAll('input[name="customer_method"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const uploadDiv = document.getElementById('customer-upload');
-                if (this.value === 'manual' || this.nextElementSibling.textContent.includes('Upload')) {
+                if (this.value === 'upload') {
                     uploadDiv.style.display = 'block';
                 } else {
                     uploadDiv.style.display = 'none';
@@ -1366,7 +1167,7 @@
             radio.addEventListener('change', function() {
                 const uploadDiv = document.getElementById('competitor-upload');
                 const reviewSites = document.getElementById('review-sites');
-                if (this.nextElementSibling.textContent.includes('Upload')) {
+                if (this.value === 'upload') {
                     uploadDiv.style.display = 'block';
                     reviewSites.style.display = 'none';
                 } else {
@@ -1375,6 +1176,11 @@
                 }
             });
         });
+
+        // Dynamic company name updates
+        document.getElementById('companyName').addEventListener('input', function(e) {
+            currentCompany = e.target.value || '';
+        });
         
         // Analyze button interaction
         document.querySelector('.analyze-btn').addEventListener('click', function() {
@@ -1382,6 +1188,17 @@
             setTimeout(() => {
                 this.style.transform = 'scale(1)';
             }, 150);
+        });
+
+        // Add some interactive feedback for form elements
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
         });
     </script>
 </body>

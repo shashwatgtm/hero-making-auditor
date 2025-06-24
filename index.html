@@ -138,22 +138,10 @@
         
         .capability-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
-        }
-        
-        @media (max-width: 1024px) {
-            .capability-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .capability-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         .capability-card {
@@ -612,6 +600,7 @@
             align-items: center;
             gap: 0.75rem;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .cta-button:hover {
@@ -988,10 +977,9 @@
                 <div class="cta-highlight">
                     <h4>Schedule Your Real Brand Analysis</h4>
                     <p>Get actual data, real competitive insights, and authentic customer discovery for your brand.</p>
-                    <button class="cta-button" onclick="window.open('https://calendly.com/shashwat-gtmhelix/45min', '_blank')">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: linear-gradient(135deg, #06b6d4, #0ea5e9); border-radius: 6px; color: white; font-size: 12px; margin-right: 0.5rem;">📅</span>
-                        Book 45-Minute Strategy Session
-                    </button>
+                    <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" class="cta-button">
+                        📅 Book 45-Minute Strategy Session
+                    </a>
                     <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                         <strong>Real analysis • Actual data • Genuine insights</strong>
                     </p>
@@ -1007,9 +995,7 @@
         <div class="cta-section">
             <div style="max-width: 900px; margin: 0 auto;">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(6, 182, 212, 0.1);">
-                        <div style="width: 32px; height: 32px; background: linear-gradient(145deg, #06b6d4, #0ea5e9); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">🚀</div>
-                    </div>
+                    <span style="font-size: 3rem;">🚀</span>
                     <h2 style="margin: 0;">Ready for Advanced GTM Transformation?</h2>
                 </div>
                 
@@ -1018,10 +1004,9 @@
                     <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.6;">
                         This platform showcases our capabilities with real methodologies and documented frameworks. For customized implementation support, detailed strategy development, and hands-on GTM optimization:
                     </p>
-                    <button class="cta-button" onclick="window.open('https://calendly.com/shashwat-gtmhelix/45min', '_blank')">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: linear-gradient(135deg, #06b6d4, #0ea5e9); border-radius: 6px; color: white; font-size: 12px; margin-right: 0.5rem;">📅</span>
-                        Book 45-Minute Strategy Session
-                    </button>
+                    <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" class="cta-button">
+                        📅 Book 45-Minute Strategy Session
+                    </a>
                     <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                         <strong>Personal consultation • Custom implementation roadmap • Direct expert support</strong>
                     </p>
@@ -1062,14 +1047,20 @@
     <script>
         let currentCompany = '';
 
+        // Debug logging
+        console.log('Script loaded');
+
         // Form submission handler
         document.getElementById('brandAnalysisForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Form submitted');
             
             // Get form values
             const companyName = document.getElementById('companyName').value || 'Company';
             const companyWebsite = document.getElementById('companyWebsite').value;
             const targetRegion = document.getElementById('targetRegion').value;
+            
+            console.log('Company:', companyName, 'Region:', targetRegion);
             
             // Validation
             if (!companyName.trim()) {
@@ -1084,12 +1075,14 @@
             
             // Update current company
             currentCompany = companyName;
+            console.log('Starting analysis for:', currentCompany);
             
             // Show loading screen
             showLoadingScreen();
             
             // Simulate analysis delay (5 seconds)
             setTimeout(() => {
+                console.log('Analysis complete, showing results');
                 hideLoadingScreen();
                 updateResultsWithCompany(companyName);
                 showResults();
@@ -1097,36 +1090,64 @@
         });
 
         function showLoadingScreen() {
-            document.getElementById('loadingScreen').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            console.log('Showing loading screen');
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function hideLoadingScreen() {
-            document.getElementById('loadingScreen').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            console.log('Hiding loading screen');
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function updateResultsWithCompany(companyName) {
+            console.log('Updating results for:', companyName);
+            
             // Update company display elements
-            document.getElementById('companyNameDisplay').textContent = 'Hero-Making Analysis Results';
-            document.getElementById('companyLogo').textContent = companyName.charAt(0).toUpperCase();
-            document.getElementById('companyDescription').textContent = `Platform capability demonstration for ${companyName}`;
+            const nameDisplay = document.getElementById('companyNameDisplay');
+            const logo = document.getElementById('companyLogo');
+            const description = document.getElementById('companyDescription');
+            
+            if (nameDisplay) nameDisplay.textContent = `${companyName} - Hero-Making Analysis Results`;
+            if (logo) logo.textContent = companyName.charAt(0).toUpperCase();
+            if (description) description.textContent = `Platform capability demonstration for ${companyName}`;
         }
 
         function showResults() {
+            console.log('Showing results section');
+            
             // Hide config section
-            document.getElementById('configSection').style.display = 'none';
+            const configSection = document.getElementById('configSection');
+            if (configSection) {
+                configSection.style.display = 'none';
+            }
             
             // Show results section
-            document.getElementById('resultsSection').style.display = 'block';
-            
-            // Scroll to results
-            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            const resultsSection = document.getElementById('resultsSection');
+            if (resultsSection) {
+                resultsSection.style.display = 'block';
+                
+                // Scroll to results
+                setTimeout(() => {
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
         }
 
         function resetForm() {
+            console.log('Resetting form');
+            
             // Reset form
-            document.getElementById('brandAnalysisForm').reset();
+            const form = document.getElementById('brandAnalysisForm');
+            if (form) form.reset();
+            
             currentCompany = '';
             
             // Reset all persona chips
@@ -1135,10 +1156,16 @@
             });
             
             // Show config section
-            document.getElementById('configSection').style.display = 'block';
+            const configSection = document.getElementById('configSection');
+            if (configSection) {
+                configSection.style.display = 'block';
+            }
             
             // Hide results section
-            document.getElementById('resultsSection').style.display = 'none';
+            const resultsSection = document.getElementById('resultsSection');
+            if (resultsSection) {
+                resultsSection.style.display = 'none';
+            }
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1148,6 +1175,7 @@
         document.querySelectorAll('.persona-chip').forEach(chip => {
             chip.addEventListener('click', function() {
                 this.classList.toggle('selected');
+                console.log('Persona selected:', this.textContent);
             });
         });
         
@@ -1155,10 +1183,12 @@
         document.querySelectorAll('input[name="customer_method"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const uploadDiv = document.getElementById('customer-upload');
-                if (this.value === 'upload') {
-                    uploadDiv.style.display = 'block';
-                } else {
-                    uploadDiv.style.display = 'none';
+                if (uploadDiv) {
+                    if (this.value === 'upload') {
+                        uploadDiv.style.display = 'block';
+                    } else {
+                        uploadDiv.style.display = 'none';
+                    }
                 }
             });
         });
@@ -1168,11 +1198,11 @@
                 const uploadDiv = document.getElementById('competitor-upload');
                 const reviewSites = document.getElementById('review-sites');
                 if (this.value === 'upload') {
-                    uploadDiv.style.display = 'block';
-                    reviewSites.style.display = 'none';
+                    if (uploadDiv) uploadDiv.style.display = 'block';
+                    if (reviewSites) reviewSites.style.display = 'none';
                 } else {
-                    uploadDiv.style.display = 'none';
-                    reviewSites.style.display = 'block';
+                    if (uploadDiv) uploadDiv.style.display = 'none';
+                    if (reviewSites) reviewSites.style.display = 'block';
                 }
             });
         });
@@ -1183,21 +1213,44 @@
         });
         
         // Analyze button interaction
-        document.querySelector('.analyze-btn').addEventListener('click', function() {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 150);
-        });
+        const analyzeBtn = document.querySelector('.analyze-btn');
+        if (analyzeBtn) {
+            analyzeBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        }
 
         // Add some interactive feedback for form elements
         document.querySelectorAll('.form-control').forEach(input => {
             input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
+                if (this.parentElement) {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                }
             });
             
             input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
+                if (this.parentElement) {
+                    this.parentElement.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, initializing...');
+            
+            // Ensure all elements are properly initialized
+            const loadingScreen = document.getElementById('loadingScreen');
+            const configSection = document.getElementById('configSection');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            console.log('Elements found:', {
+                loadingScreen: !!loadingScreen,
+                configSection: !!configSection,
+                resultsSection: !!resultsSection
             });
         });
     </script>

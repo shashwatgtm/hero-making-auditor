@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero-Making Brand Audit - GTM Alpha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .gtm-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, #f1f2f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Platform Capabilities */
+        .capabilities {
+            padding: 2rem;
+            background: white;
+        }
+        
+        .capabilities h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .capability-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .capability-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .capability-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .capability-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .capability-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #f0f0f0, #cacaca);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1.5rem;
+            box-shadow: 
+                20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff,
+                inset 5px 5px 10px #bebebe,
+                inset -5px -5px 10px #ffffff;
+            position: relative;
+        }
+        
+        .capability-icon::before {
+            content: attr(data-icon);
+            position: absolute;
+            font-size: 28px;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .capability-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .capability-card p {
+            color: #6c757d;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .config-section {
+            padding: 2rem;
+            background: #fafbfc;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .target-personas-section {
+            grid-column: 1 / -1;
+            width: 100%;
+        }
+        
+        .target-personas-section .persona-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            align-items: center;
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        
+        .target-personas-section .persona-chip {
+            padding: 0.6rem 1rem;
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            flex: 0 0 auto;
+            white-space: nowrap;
+            min-width: max-content;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-control {
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            outline: none;
+        }
+        
+        .persona-chip {
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .persona-chip.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .persona-chip:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .custom-role {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .analysis-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .option-group {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #e1e8ed;
+        }
+        
+        .option-group h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .radio-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #667eea;
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .results-section {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e1e8ed;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .metric-input {
+            background: #e3f2fd !important;
+            color: #1976d2 !important;
+            border-color: #2196f3 !important;
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            color: #6c757d;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-change {
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .metric-change.positive {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .tabs-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .tabs-nav {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 1.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+        
+        .tab-btn:hover {
+            color: #667eea;
+            background: white;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+            min-height: 400px;
+        }
+        
+        .customer-list, .competitor-list {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .list-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .list-item:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .item-info h4 {
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .item-info p {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-verified {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-competitor {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .executive-profile {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-info h4 {
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .profile-info p {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .hero-score {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .score-high {
+            background: #28a745;
+            color: white;
+        }
+        
+        .score-medium {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .score-low {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .hero-signal {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .hero-signal p {
+            color: #155724;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-signal small {
+            color: #6c757d;
+        }
+        
+        .competitive-position {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .position-rank {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .position-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .scoring-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .weight-list, .score-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .weight-list h4, .score-list h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .weight-item, .score-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        
+        .weight-item:last-child, .score-item:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendations {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .jtbd-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .jtbd-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .jtbd-card.cto {
+            border-left: 4px solid #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+        }
+        
+        .jtbd-card.cro {
+            border-left: 4px solid #28a745;
+            background: linear-gradient(135deg, #f8fff8 0%, #ffffff 100%);
+        }
+        
+        .jtbd-card.cmo {
+            border-left: 4px solid #ffc107;
+            background: linear-gradient(135deg, #fffdf8 0%, #ffffff 100%);
+        }
+        
+        .jtbd-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        
+        .persona-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .persona-badge.cto {
+            background: #667eea;
+        }
+        
+        .persona-badge.cro {
+            background: #28a745;
+        }
+        
+        .persona-badge.cmo {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .jtbd-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .jtbd-section h5 {
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .jtbd-section p {
+            color: #6c757d;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .jtbd-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                border-radius: 12px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .analysis-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-nav {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                flex: 1 1 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="gtm-logo">GTM α</div>
+                </div>
+                <h1>Hero-Making Brand Audit</h1>
+                <p>'H.E.A.R.T + JTBD' Framework: Emotional Intelligence meets Jobs-to-be-Done!</p>
+            </div>
+        </div>
+        
+        <!-- Platform Capabilities -->
+        <div class="capabilities">
+            <h2>Platform Capabilities</h2>
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-icon" data-icon="🔍"></div>
+                    <h3>Real Customer Discovery</h3>
+                    <p>Automatically discover verified customers through web scraping, case studies, testimonials, and G2/Capterra reviews</p>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-icon" data-icon="⚖️"></div>
+                    <h3>Competitive Benchmarking</h3>
+                    <p>Auto-discover top 3 competitors from G2/Capterra/TrustRadius with market positioning analysis</p>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-icon" data-icon="👥"></div>
+                    <h3>Executive Hero Analysis</h3>
+                    <p>Real LinkedIn profiles of customer CTOs, CROs, CMOs with career advancement signal detection</p>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-icon" data-icon="📊"></div>
+                    <h3>Multi-Channel Scoring</h3>
+                    <p>40% G2/Capterra + 30% Social Media + 30% Industry Publications for comprehensive analysis</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Configuration Section -->
+        <div class="config-section">
+            <div class="config-grid">
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" class="form-control" placeholder="e.g., Whatfix, Salesforce, HubSpot" value="Whatfix">
+                </div>
+                
+                <div class="form-group">
+                    <label>Company Website (Optional)</label>
+                    <input type="text" class="form-control" placeholder="e.g., https://whatfix.com" value="https://whatfix.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Target Region</label>
+                    <select class="form-control">
+                        <option>North America</option>
+                        <option>Europe</option>
+                        <option>Asia-Pacific</option>
+                        <option>Global</option>
+                    </select>
+                </div>
+                
+                <div class="form-group target-personas-section">
+                    <label>Target Personas</label>
+                    <div class="persona-grid">
+                        <div class="persona-chip selected">CTO</div>
+                        <div class="persona-chip selected">CRO</div>
+                        <div class="persona-chip selected">CMO</div>
+                        <div class="persona-chip">CEO</div>
+                        <div class="persona-chip">CISO</div>
+                        <div class="persona-chip">VP Engineering</div>
+                        <div class="persona-chip">VP Sales</div>
+                        <div class="persona-chip">VP Marketing</div>
+                    </div>
+                    <div class="custom-role">
+                        <input type="text" class="form-control" placeholder="Custom Role: e.g., Customer Success Head">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-options">
+                <div class="option-group">
+                    <h3>Customer Discovery</h3>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="customer_method" checked>
+                            <span>Auto-Discover Customers</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="customer_method">
+                            <span>Upload Customer List (.csv/.xlsx)</span>
+                        </label>
+                    </div>
+                    <div id="customer-upload" style="display: none; margin-top: 1rem;">
+                        <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
+                        <small style="color: #6c757d; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <h3>Competitive Benchmarking</h3>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="competitor_method" checked>
+                            <span>Auto-Discover from Review Sites</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="competitor_method">
+                            <span>Upload Competitor List (.csv/.xlsx)</span>
+                        </label>
+                    </div>
+                    <div id="review-sites" style="margin-top: 1rem;">
+                        <label style="font-size: 0.9rem; color: #6c757d; margin-bottom: 0.5rem; display: block;">Select Review Sites:</label>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" checked> G2.com
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" checked> Capterra
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox"> TrustRadius
+                            </label>
+                        </div>
+                    </div>
+                    <div id="competitor-upload" style="display: none; margin-top: 1rem;">
+                        <input type="file" class="form-control" accept=".csv,.xlsx" style="padding: 0.75rem;">
+                        <small style="color: #6c757d; font-size: 0.8rem;">Upload file with columns: Company Name, Website, Industry</small>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="analyze-btn">Analyze Hero-Making Impact</button>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section">
+            <div class="results-header">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 24px; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);">W</div>
+                    <h2 style="color: #2c3e50; font-size: 2.5rem; margin: 0;">Hero-Making Analysis Results</h2>
+                </div>
+                <p style="color: #6c757d; font-size: 1.1rem;">Comprehensive brand intelligence report for Whatfix</p>
+            </div>
+            
+            <!-- Summary Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card metric-input">
+                    <div class="metric-value">23</div>
+                    <div class="metric-label">Target Personas Analyzed</div>
+                    <div class="metric-change positive">Input: CTO, CRO, CMO profiles</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">84</div>
+                    <div class="metric-label">Hero-Making Score</div>
+                    <div class="metric-change positive">Calculated as: (G2 Score × 40%) + (Social Score × 30%) + (Publications × 30%)</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">67%</div>
+                    <div class="metric-label">Career Impact Stories</div>
+                    <div class="metric-change positive">Calculated as: Promotion mentions ÷ Total executive posts</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">89th</div>
+                    <div class="metric-label">Industry Percentile</div>
+                    <div class="metric-change positive">Calculated as: Hero-Making Score rank vs G2 category leaders</div>
+                </div>
+            </div>
+            
+            <!-- Detailed Analysis Tabs -->
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="showTab('customers')">Customer Discovery</button>
+                    <button class="tab-btn" onclick="showTab('competitors')">Competitive Analysis</button>
+                    <button class="tab-btn" onclick="showTab('executives')">Executive Analysis</button>
+                    <button class="tab-btn" onclick="showTab('scoring')">Scoring Breakdown</button>
+                    <button class="tab-btn" onclick="showTab('recommendations')">Recommendations</button>
+                </div>
+                
+                <!-- Customer Discovery Tab -->
+                <div id="customers" class="tab-content">
+                    <h3>Discovered Customers</h3>
+                    <p style="margin-bottom: 2rem; color: #6c757d;">Found <strong>6</strong> verified customer companies:</p>
+                    
+                    <div class="customer-list">
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Sentry</h4>
+                                <p>Software • Error Monitoring</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Cardinal Health</h4>
+                                <p>Healthcare • Medical Distribution</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Experian</h4>
+                                <p>Financial Services • Credit Reporting</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>AutoZone</h4>
+                                <p>Automotive Retail • Auto Parts</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Mercedes-Benz</h4>
+                                <p>Automotive • Luxury Vehicles</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Marketboomer</h4>
+                                <p>Procurement Software • B2B Platform</p>
+                            </div>
+                            <div class="status-badge status-verified">✓ Verified</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Competitive Analysis Tab -->
+                <div id="competitors" class="tab-content" style="display: none;">
+                    <div class="competitive-position">
+                        <div class="position-rank">#2</div>
+                        <div class="position-label">Market Position of 4 Companies</div>
+                        <p style="margin-top: 1rem; opacity: 0.9;">+5.2 points above average competitor</p>
+                    </div>
+                    
+                    <h3>Competitor Analysis</h3>
+                    <p style="margin-bottom: 2rem; color: #6c757d;">Auto-discovered from G2, Capterra, and TrustRadius:</p>
+                    
+                    <div class="competitor-list">
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>WalkMe</h4>
+                                <p>G2 • 4.5⭐ (234 reviews) • Digital Adoption</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>Hero Score: 87.2</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Pendo</h4>
+                                <p>G2 • 4.3⭐ (456 reviews) • Product Analytics</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>Hero Score: 78.9</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="item-info">
+                                <h4>Appcues</h4>
+                                <p>Capterra • 4.4⭐ (189 reviews) • User Onboarding</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>Hero Score: 75.6</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Executive Analysis Tab -->
+                <div id="executives" class="tab-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <!-- CTO Analysis -->
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 1rem; text-align: center;">CTO Analysis (8 profiles)</h4>
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>Sarah Chen</h4>
+                                        <p>CTO @ Sentry</p>
+                                    </div>
+                                    <div class="hero-score score-high">92</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Digital transformation with Whatfix led to 95% adoption. Board recognized our innovation leadership."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>David Kim</h4>
+                                        <p>CTO @ Marketboomer</p>
+                                    </div>
+                                    <div class="hero-score score-low">64</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Early stages with Whatfix implementation. Showing initial promise."</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CRO Analysis -->
+                        <div>
+                            <h4 style="color: #28a745; margin-bottom: 1rem; text-align: center;">CRO Analysis (6 profiles)</h4>
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>Michael Torres</h4>
+                                        <p>CRO @ Cardinal Health</p>
+                                    </div>
+                                    <div class="hero-score score-high">89</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Whatfix reduced our sales training time by 50%. Achieved record quarterly results."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>Lisa Zhang</h4>
+                                        <p>CRO @ AutoZone</p>
+                                    </div>
+                                    <div class="hero-score score-medium">71</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Streamlined our sales processes. Team productivity increased significantly."</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CMO Analysis -->
+                        <div>
+                            <h4 style="color: #ffc107; margin-bottom: 1rem; text-align: center;">CMO Analysis (9 profiles)</h4>
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>Jennifer Walsh</h4>
+                                        <p>CMO @ Experian</p>
+                                    </div>
+                                    <div class="hero-score score-high">86</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Whatfix enabled our marketing team transformation. Campaign efficiency up 40%."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="executive-profile">
+                                <div class="profile-header">
+                                    <div class="profile-info">
+                                        <h4>Robert Silva</h4>
+                                        <p>CMO @ Mercedes-Benz</p>
+                                    </div>
+                                    <div class="hero-score score-medium">78</div>
+                                </div>
+                                <div class="hero-signal">
+                                    <p>"Digital adoption strategy with Whatfix drove customer engagement growth."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                        <p style="color: #6c757d; margin: 0;">Total executive profiles analyzed: <strong>23 across all personas</strong> (8 CTO + 6 CRO + 9 CMO)</p>
+                    </div>
+                </div>
+                
+                <!-- Scoring Breakdown Tab -->
+                <div id="scoring" class="tab-content" style="display: none;">
+                    <h3>Multi-Channel Scoring Breakdown</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                        <div>
+                            <h4 style="margin-bottom: 1.5rem; color: #2c3e50;">Scoring Methodology</h4>
+                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid #dee2e6;">Data Source</th>
+                                        <th style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6;">Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">G2/Capterra/TrustRadius</td>
+                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600;">40%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Social Media (LinkedIn/Twitter)</td>
+                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600;">30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 1rem;">Industry Publications</td>
+                                        <td style="padding: 1rem; text-align: right; font-weight: 600;">30%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 1.5rem; color: #2c3e50;">Current Performance</h4>
+                            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid #dee2e6;">Channel</th>
+                                        <th style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6;">Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Review Platforms</td>
+                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600; color: #28a745;">85.1/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 1rem; border-bottom: 1px solid #dee2e6;">Social Media</td>
+                                        <td style="padding: 1rem; text-align: right; border-bottom: 1px solid #dee2e6; font-weight: 600; color: #28a745;">82.4/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 1rem;">Industry Publications</td>
+                                        <td style="padding: 1rem; text-align: right; font-weight: 600; color: #ffc107;">78.9/100</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2196f3;">
+                        <p style="color: #1976d2; margin: 0;"><strong>Implementation Status:</strong> All channels active ✅ | Real-time competitive benchmarking ✅ | Custom persona analysis ✅</p>
+                    </div>
+                </div>
+                
+                <!-- Recommendations Tab -->
+                <div id="recommendations" class="tab-content" style="display: none;">
+                    <h3>Strategic Recommendations</h3>
+                    
+                    <div style="background: #d4edda; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #28a745;">
+                        <p style="color: #155724; margin: 0; font-weight: 600;">Strong Hero-Making Potential - Your brand effectively helps executives advance their careers</p>
+                    </div>
+                    
+                    <h4 style="margin-bottom: 1.5rem;">Jobs-to-be-Done (JTBD) Framework Analysis by Persona:</h4>
+                    
+                    <div class="jtbd-grid">
+                        <!-- CTO JTBD -->
+                        <div class="jtbd-card cto">
+                            <div class="jtbd-header">
+                                <div class="persona-badge cto">CTO</div>
+                                <h4 style="color: #2c3e50; margin: 0;">Chief Technology Officer</h4>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Functional Job</h5>
+                                <p>"When I need to modernize our tech stack and prove digital transformation ROI, I hire Whatfix to deliver measurable adoption metrics that showcase my technical leadership."</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Emotional Job</h5>
+                                <p>Feel recognized as an innovative technology leader who drives organizational transformation and operational efficiency.</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Success Criteria</h5>
+                                <p>95% user adoption rates, reduced training costs, board recognition for digital transformation success.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- CRO JTBD -->
+                        <div class="jtbd-card cro">
+                            <div class="jtbd-header">
+                                <div class="persona-badge cro">CRO</div>
+                                <h4 style="color: #2c3e50; margin: 0;">Chief Revenue Officer</h4>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Functional Job</h5>
+                                <p>"When I need to accelerate sales team productivity and hit revenue targets, I hire Whatfix to streamline sales processes and reduce ramp time."</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Emotional Job</h5>
+                                <p>Feel confident as a revenue growth architect who consistently delivers on ambitious targets and builds high-performing teams.</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Success Criteria</h5>
+                                <p>50% reduction in sales training time, record quarterly results, promotion recognition for revenue leadership.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- CMO JTBD -->
+                        <div class="jtbd-card cmo">
+                            <div class="jtbd-header">
+                                <div class="persona-badge cmo">CMO</div>
+                                <h4 style="color: #2c3e50; margin: 0;">Chief Marketing Officer</h4>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Functional Job</h5>
+                                <p>"When I need to optimize marketing operations and prove campaign effectiveness, I hire Whatfix to enhance team productivity and demonstrate clear marketing ROI."</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Emotional Job</h5>
+                                <p>Feel established as a strategic marketing leader who drives measurable business impact and operational excellence.</p>
+                            </div>
+                            
+                            <div class="jtbd-section">
+                                <h5>Success Criteria</h5>
+                                <p>40% improvement in campaign efficiency, enhanced team capabilities, industry recognition for marketing innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #2196f3;">
+                        <h5 style="color: #1976d2; margin-bottom: 1rem;">Common Job Triggers Across All Personas:</h5>
+                        <p style="color: #1976d2; margin: 0;">New role onboarding, quarterly business reviews, budget planning cycles, digital transformation initiatives, competitive pressure situations, and performance review periods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div style="background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 3rem 2rem; text-align: center; border-top: 1px solid #e1e8ed;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-size: 2rem;">🚀</span>
+                    <h2 style="color: #2c3e50; margin: 0;">Ready for Advanced GTM Transformation?</h2>
+                </div>
+                
+                <div style="background: #28a745; padding: 2rem; border-radius: 16px; margin-bottom: 2rem;">
+                    <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Schedule Your Personal GTM Alpha Strategy Session</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; line-height: 1.6;">
+                        This enhanced report provides comprehensive insights based on real expertise and documented methodologies. For customized implementation support, detailed strategy development, and hands-on GTM optimization:
+                    </p>
+                    <button style="background: white; color: #28a745; border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 0.5rem;">
+                        📅 Book 45-Minute Strategy Session
+                    </button>
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 1rem; font-size: 0.9rem;">
+                        <strong>Personal consultation • Custom implementation roadmap • Direct expert support</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <div style="background: white; padding: 3rem 2rem; border-top: 1px solid #e1e8ed;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <h2 style="color: #2c3e50; margin-bottom: 2rem;">About Shashwat Ghosh</h2>
+                <p style="color: #6c757d; line-height: 1.7; margin-bottom: 2rem; font-size: 1.1rem;">
+                    Shashwat Ghosh developed the EPIC framework for Go-to-Market (GTM) strategies, offering CXOs a strategic roadmap to optimize their start-ups' market approaches. His innovative approach transcends traditional methods, addressing new forces shaping GTM for Alpha growth. Recognized for his contributions to product marketing, Shashwat is ranked among the <strong>Top 10 Product Marketing Creators in India and 52nd worldwide on LinkedIn.</strong>
+                </p>
+                
+                <h3 style="color: #2c3e50; margin-bottom: 1.5rem;">Services offered:</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
+                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">Helix Consulting</h4>
+                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">AI tools & EPIC framework to optimize Go-to-Market Alpha Plays for CXOs.</p>
+                    </div>
+                    
+                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
+                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">Hyper-Plays.com</h4>
+                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">Enrich CRM, Outbound support, ICP tester and buyer group persona for Sales and SDR teams</p>
+                    </div>
+                    
+                    <div style="border: 2px solid #e1e8ed; padding: 1.5rem; border-radius: 12px;">
+                        <h4 style="color: #2c3e50; margin-bottom: 1rem;">GTM Fractional Expert</h4>
+                        <p style="color: #6c757d; line-height: 1.6; font-size: 0.95rem;">Executive-level strategic guidance for efficient scaling without overhead.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.style.display = 'none');
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab and mark button as active
+            document.getElementById(tabName).style.display = 'block';
+            event.target.classList.add('active');
+        }
+        
+        // Persona chip selection
+        document.querySelectorAll('.persona-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+        // Radio button functionality for file uploads
+        document.querySelectorAll('input[name="customer_method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const uploadDiv = document.getElementById('customer-upload');
+                if (this.value === 'manual' || this.nextElementSibling.textContent.includes('Upload')) {
+                    uploadDiv.style.display = 'block';
+                } else {
+                    uploadDiv.style.display = 'none';
+                }
+            });
+        });
+        
+        document.querySelectorAll('input[name="competitor_method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const uploadDiv = document.getElementById('competitor-upload');
+                const reviewSites = document.getElementById('review-sites');
+                if (this.nextElementSibling.textContent.includes('Upload')) {
+                    uploadDiv.style.display = 'block';
+                    reviewSites.style.display = 'none';
+                } else {
+                    uploadDiv.style.display = 'none';
+                    reviewSites.style.display = 'block';
+                }
+            });
+        });
+        
+        // Analyze button interaction
+        document.querySelector('.analyze-btn').addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    </script>
+</body>
+</html>

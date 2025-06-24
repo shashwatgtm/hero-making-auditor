@@ -17,113 +17,330 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for modern design
+# Inject the exact CSS from the beautiful artifact
 st.markdown("""
 <style>
+    /* Hide Streamlit branding and menu */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .stDeployButton {display:none;}
+    [data-testid="stSidebar"] {display: none;}
+    
+    /* Global styles */
     .stApp {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    .main-header {
+    .main .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
+    }
+    
+    /* Hero header - exact replica */
+    .hero-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
-        border-radius: 15px;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        margin-bottom: 3rem;
         text-align: center;
         color: white;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 800;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        letter-spacing: -2px;
     }
     
     .hero-subtitle {
-        font-size: 1.2rem;
-        opacity: 0.9;
-        margin-bottom: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        opacity: 0.95;
     }
     
+    .hero-description {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    
+    /* Search container - exact replica */
     .search-container {
         background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        margin-bottom: 3rem;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .search-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    /* Input styling */
+    .stTextInput > div > div > input {
+        background: #f7fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Button styling */
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    
+    /* Feature cards - exact replica */
+    .features-section {
+        margin-bottom: 3rem;
+    }
+    
+    .features-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: white;
         margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
     .feature-card {
         background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        margin-bottom: 1rem;
-        border-left: 4px solid #667eea;
-        transition: transform 0.3s ease;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.05);
+        height: 100%;
+        transition: all 0.3s ease;
+        text-align: center;
     }
     
     .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-description {
+        color: #4a5568;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    
+    /* Results styling */
+    .results-container {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .success-badge {
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
     }
     
     .metric-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .success-message {
-        background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-        color: white;
-        padding: 1rem;
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        text-align: center;
-        font-weight: bold;
-    }
-    
-    .progress-container {
-        background: white;
         padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        margin-bottom: 1rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .metric-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        font-weight: 500;
     }
     
     .customer-card {
-        background: white;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin-bottom: 0.5rem;
+        background: #f7fafc;
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin-bottom: 1rem;
         border-left: 4px solid #667eea;
+        transition: all 0.3s ease;
     }
     
-    /* Hide Streamlit elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    .customer-card:hover {
+        background: white;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transform: translateX(5px);
+    }
     
-    .stDeployButton {display:none;}
+    .customer-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
     
-    [data-testid="stSidebar"] {display: none;}
+    .customer-industry {
+        color: #667eea;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .customer-description {
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+    
+    .customer-indicators {
+        color: #38a169;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    /* Progress styling */
+    .progress-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .progress-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Export section */
+    .export-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        margin-top: 2rem;
+    }
+    
+    .export-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    /* Custom download button */
+    .download-btn {
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+    }
+    
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(72, 187, 120, 0.6);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+        }
+        .search-container, .results-container {
+            padding: 1.5rem;
+        }
+        .feature-card {
+            padding: 1.5rem;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
 def main():
-    # Header
+    # Hero Header - Exact replica of the beautiful artifact
     st.markdown("""
-    <div class="main-header">
+    <div class="hero-header">
         <div class="hero-title">🦸‍♂️ Hero Making Auditor</div>
         <div class="hero-subtitle">Universal B2B Brand Intelligence Platform</div>
-        <p style="margin-top: 1rem; font-size: 1rem;">Discover, analyze, and leverage your hero customers for maximum business impact</p>
+        <div class="hero-description">Discover, analyze, and leverage your hero customers for maximum business impact</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -131,22 +348,23 @@ def main():
     if 'discovery_results' not in st.session_state:
         st.session_state.discovery_results = None
     
-    # Main search interface
+    # Search Container - Exact replica
     st.markdown('<div class="search-container">', unsafe_allow_html=True)
     
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.markdown("### 🎯 Discover Your Hero Customers")
+        st.markdown('<div class="search-title">🎯 Discover Your Hero Customers</div>', unsafe_allow_html=True)
         company_url = st.text_input(
-            "Enter company website URL",
+            "",
             placeholder="https://example.com",
-            help="Enter the main website URL of the company you want to analyze"
+            help="Enter the main website URL of the company you want to analyze",
+            label_visibility="collapsed"
         )
     
     with col2:
-        st.markdown("### 🚀 Action")
-        discover_clicked = st.button("🔍 Start Discovery", type="primary", use_container_width=True)
+        st.markdown('<div class="search-title">🚀 Action</div>', unsafe_allow_html=True)
+        discover_clicked = st.button("🔍 Start Discovery", type="primary")
     
     st.markdown('</div>', unsafe_allow_html=True)
     
@@ -164,92 +382,84 @@ def main():
     if st.session_state.discovery_results:
         show_results(st.session_state.discovery_results, company_url)
     
-    # Features section (only show if no results)
+    # Features section (only show if no results) - Exact replica
     if not st.session_state.discovery_results:
         show_features()
 
 def show_features():
-    """Display platform features"""
-    st.markdown("## ✨ Platform Features")
+    """Display platform features - exact replica of artifact"""
+    st.markdown('<div class="features-section">', unsafe_allow_html=True)
+    st.markdown('<div class="features-title">✨ Platform Features</div>', unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown("""
         <div class="feature-card">
-            <h4>🎯 Smart Discovery</h4>
-            <p>Advanced algorithms identify customer testimonials, case studies, and success stories across your website</p>
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">Smart Discovery</div>
+            <div class="feature-description">Advanced algorithms identify customer testimonials, case studies, and success stories across your website</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <h4>🧠 AI Analysis</h4>
-            <p>Intelligent classification by industry, company size, and success indicators for strategic insights</p>
+            <div class="feature-icon">🧠</div>
+            <div class="feature-title">AI Analysis</div>
+            <div class="feature-description">Intelligent classification by industry, company size, and success indicators for strategic insights</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
         <div class="feature-card">
-            <h4>📊 Export Ready</h4>
-            <p>Download comprehensive reports in CSV and JSON formats for immediate use in sales and marketing</p>
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Export Ready</div>
+            <div class="feature-description">Download comprehensive reports in CSV and JSON formats for immediate use in sales and marketing</div>
         </div>
         """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 def run_hero_discovery(company_url):
     """Run the hero customer discovery process"""
     
-    # Create progress indicators
-    progress_placeholder = st.empty()
+    # Progress Container
+    st.markdown('<div class="progress-container">', unsafe_allow_html=True)
+    st.markdown('<div class="progress-title">🔄 Discovery in Progress</div>', unsafe_allow_html=True)
     
-    with progress_placeholder.container():
-        st.markdown('<div class="progress-container">', unsafe_allow_html=True)
-        st.markdown("### 🔄 Discovery in Progress")
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    try:
+        # Simulate discovery process with realistic steps
+        steps = [
+            ("🚀 Initializing discovery engine...", 20),
+            ("🌐 Analyzing website structure...", 40),
+            ("🔍 Extracting customer data...", 60),
+            ("🧠 Processing with AI analysis...", 80),
+            ("✅ Discovery completed!", 100)
+        ]
         
-        progress_bar = st.progress(0)
-        status_text = st.empty()
+        for step_text, progress in steps:
+            status_text.text(step_text)
+            progress_bar.progress(progress)
+            time.sleep(1.2)
         
-        try:
-            # Step 1: Simulate discovery process
-            status_text.text("🚀 Initializing discovery engine...")
-            progress_bar.progress(20)
-            time.sleep(1)
-            
-            status_text.text("🌐 Analyzing website structure...")
-            progress_bar.progress(40)
-            time.sleep(1)
-            
-            status_text.text("🔍 Extracting customer data...")
-            progress_bar.progress(60)
-            time.sleep(1)
-            
-            status_text.text("🧠 Processing with AI analysis...")
-            progress_bar.progress(80)
-            time.sleep(1)
-            
-            status_text.text("✅ Discovery completed!")
-            progress_bar.progress(100)
-            time.sleep(1)
-            
-            # Generate sample results for demo
-            results = generate_sample_results(company_url)
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-            
-            return results
-            
-        except Exception as e:
-            st.error(f"An error occurred during discovery: {str(e)}")
-            st.markdown('</div>', unsafe_allow_html=True)
-            return None
+        # Generate results
+        results = generate_sample_results(company_url)
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+        return results
+        
+    except Exception as e:
+        st.error(f"An error occurred during discovery: {str(e)}")
+        st.markdown('</div>', unsafe_allow_html=True)
+        return None
 
 def generate_sample_results(company_url):
     """Generate sample results for demonstration"""
-    
-    # Extract domain for realistic results
-    domain = company_url.replace('https://', '').replace('http://', '').split('/')[0]
     
     sample_customers = [
         {
@@ -305,71 +515,77 @@ def generate_sample_results(company_url):
 def show_results(results, company_url):
     """Display the discovery results"""
     
+    # Success message
     st.markdown("""
-    <div class="success-message">
+    <div class="success-badge">
         🎉 Hero Customer Discovery Completed Successfully!
     </div>
     """, unsafe_allow_html=True)
     
-    # Display metrics
+    # Metrics cards
+    st.markdown('<div class="results-container">', unsafe_allow_html=True)
+    
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.markdown(f"""
         <div class="metric-card">
-            <h3>{results['pages_processed']}</h3>
-            <p>Pages Analyzed</p>
+            <div class="metric-number">{results['pages_processed']}</div>
+            <div class="metric-label">Pages Analyzed</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown(f"""
         <div class="metric-card">
-            <h3>{results['total_customers']}</h3>
-            <p>Hero Customers</p>
+            <div class="metric-number">{results['total_customers']}</div>
+            <div class="metric-label">Hero Customers</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown(f"""
         <div class="metric-card">
-            <h3>{results['industries']}</h3>
-            <p>Industries</p>
+            <div class="metric-number">{results['industries']}</div>
+            <div class="metric-label">Industries</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col4:
         st.markdown(f"""
         <div class="metric-card">
-            <h3>{results['success_stories']}</h3>
-            <p>Success Stories</p>
+            <div class="metric-number">{results['success_stories']}</div>
+            <div class="metric-label">Success Stories</div>
         </div>
         """, unsafe_allow_html=True)
     
-    # Display customer list
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Customer list
+    st.markdown('<div class="results-container">', unsafe_allow_html=True)
     st.markdown("## 🏆 Discovered Hero Customers")
     
     for customer in results['customers']:
         st.markdown(f"""
         <div class="customer-card">
-            <h4>🏢 {customer['name']}</h4>
-            <p><strong>Industry:</strong> {customer['industry']}</p>
-            <p><strong>Success Story:</strong> {customer['description']}</p>
-            <p><strong>Success Indicators:</strong> {', '.join(customer['success_indicators'])}</p>
-            <p><small><strong>Source:</strong> <a href="{customer['source_url']}" target="_blank">{customer['page_title']}</a></small></p>
+            <div class="customer-name">🏢 {customer['name']}</div>
+            <div class="customer-industry">Industry: {customer['industry']}</div>
+            <div class="customer-description">{customer['description']}</div>
+            <div class="customer-indicators">Success Indicators: {', '.join(customer['success_indicators'])}</div>
         </div>
         """, unsafe_allow_html=True)
     
-    # Export options
-    st.markdown("## 📥 Export Results")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Export section
+    st.markdown('<div class="export-section">', unsafe_allow_html=True)
+    st.markdown('<div class="export-title">📥 Export Results</div>', unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
-        # Create DataFrame for export
         df = pd.DataFrame(results['customers'])
         csv = df.to_csv(index=False)
-        
         st.download_button(
             label="📊 Download CSV",
             data=csv,
@@ -379,9 +595,7 @@ def show_results(results, company_url):
         )
     
     with col2:
-        # Create JSON export
         json_data = json.dumps(results['customers'], indent=2)
-        
         st.download_button(
             label="📋 Download JSON",
             data=json_data,
@@ -394,6 +608,8 @@ def show_results(results, company_url):
         if st.button("🔄 New Discovery", use_container_width=True):
             st.session_state.discovery_results = None
             st.rerun()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
